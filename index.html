@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="es-MX"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Red Velvet · Prototipo</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#151020;--bg2:#1d1729;--text:#f5f1fa;--muted:#c7bedf;--card:#241c33;--line:rgba(255,255,255,.12);
+  --g1a:#FFD9FF;--g1b:#C0A4EE;--g2a:#C7F3F6;--g2b:#E0F7FF;--g3a:#FDFCF8;--g3b:#E4FFFF;--g4a:#A4C6E8;--g4b:#8F84D5;--g5a:#7E89CA;--g5b:#F7C9FF;
+  --accent:#C2A5EE;--accent2:#9CC2E8;--ink:#20162f;color-scheme:dark light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:light){ :root:not([data-theme="dark"]){--bg:#FDFCF8;--bg2:#ffffff;--text:#241b33;--muted:#6a6080;--card:#ffffff;--line:rgba(0,0,0,.08);} }
+:root[data-theme="dark"]{--bg:#151020;--bg2:#1d1729;--text:#f5f1fa;--muted:#c7bedf;--card:#241c33;--line:rgba(255,255,255,.12);}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Quicksand',sans-serif;min-height:100%}
+h1,h2,h3,.disp{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.02em;margin:0}
+.flourish{font-family:'Bungee',cursive;text-transform:none;letter-spacing:0}
+[hidden]{display:none!important}
+button,input{font-family:inherit}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.1rem}
+header{position:sticky;top:0;z-index:5;background:var(--bg2);border-bottom:1px solid var(--line);padding:env(safe-area-inset-top,0px) 0 0}
+.topbar{display:flex;align-items:center;gap:1rem;padding:.8rem 1.1rem;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.logo{font-size:1.4rem;color:var(--g1b)}
+nav{display:flex;gap:.3rem;margin-left:.5rem;flex-wrap:wrap}
+nav button{background:none;border:none;color:var(--muted);font-weight:700;padding:.45rem .7rem;border-radius:999px;cursor:pointer}
+nav button.on{background:linear-gradient(135deg,var(--g1a),var(--g1b));color:var(--ink)}
+.search{flex:1;min-width:140px;display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem;gap:.4rem;align-items:center}
+.search input{background:none;border:none;color:var(--text);outline:none;width:100%}
+.iconbtn{position:relative;background:var(--card);border:1px solid var(--line);border-radius:999px;width:38px;height:38px;display:grid;place-items:center;cursor:pointer;color:var(--text)}
+.badge{position:absolute;top:-6px;right:-6px;background:var(--g5b);color:var(--ink);font-size:.7rem;font-weight:700;border-radius:999px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 3px}
+main{padding:1.4rem 0 3rem}
+.hero{background:linear-gradient(135deg,var(--g5a),var(--g5b));border-radius:22px;padding:2.2rem 1.4rem;margin-bottom:1.6rem;color:var(--ink);text-align:center}
+.hero h1{font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.05}
+.hero p{margin:.6rem auto 1rem;max-width:34rem;font-weight:600}
+.btn{display:inline-block;border:none;border-radius:999px;padding:.65rem 1.3rem;font-weight:700;cursor:pointer}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.ghost{background:rgba(255,255,255,.55);color:var(--ink)}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;margin:1.6rem 0 .8rem}
+.section-title h2{font-size:1.2rem}
+.section-title a{font-size:.85rem;color:var(--accent2);text-decoration:underline;cursor:pointer}
+.row{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:.8rem;display:flex;flex-direction:column;gap:.4rem}
+.thumb{aspect-ratio:4/3;border-radius:12px;display:grid;place-items:center;font-size:1.8rem;color:var(--ink)}
+.tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.08);padding:.15rem .5rem;border-radius:999px;color:var(--muted);width:fit-content}
+.status{font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:999px;width:fit-content}
+.status.open{background:#2fae6522;color:#4fd98a}
+.status.closed{background:#d94f4f22;color:#ff8f8f}
+.artist-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.a-banner{height:64px;background-size:cover;background-position:center}
+.a-body{padding:0 .85rem .85rem;margin-top:-24px;display:flex;flex-direction:column;align-items:flex-start;gap:.3rem}
+.a-body .avatar{width:46px;height:46px;border:3px solid var(--card)}
+.avatar{width:52px;height:52px;border-radius:999px;flex-shrink:0;display:grid;place-items:center;font-size:1.3rem;color:var(--ink)}
+.price{font-weight:700}
+.addbtn{border:none;border-radius:999px;padding:.4rem .8rem;font-weight:700;cursor:pointer;background:var(--g4b);color:#fff;font-size:.82rem}
+.addbtn:disabled{opacity:.5;cursor:not-allowed}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--muted);padding:.4rem .9rem;border-radius:999px;font-weight:700;font-size:.82rem;cursor:pointer}
+.chip.on{background:linear-gradient(135deg,var(--g4a),var(--g4b));color:#fff;border-color:transparent}
+.banner{height:110px;border-radius:18px;margin-bottom:-34px}
+.pcard{display:flex;gap:1rem;align-items:flex-end;padding:0 .6rem}
+.pcard .avatar{width:76px;height:76px;font-size:2rem;border:4px solid var(--bg)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem;margin-top:1rem}
+.cartline{display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
+.cartline:last-child{border-bottom:none}
+.qtybtn{width:26px;height:26px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--text);cursor:pointer}
+.total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--line)}
+.empty{text-align:center;color:var(--muted);padding:2rem 1rem}
+.fieldset{display:grid;gap:.6rem;margin:.8rem 0}
+.fieldset input,.fieldset select{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:.6rem .8rem;color:var(--text)}
+.radios{display:flex;gap:.6rem;flex-wrap:wrap}
+.radios label{display:flex;gap:.4rem;align-items:center;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;font-size:.88rem}
+.note{font-size:.78rem;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.8rem;padding:1.4rem 0 2rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="topbar">
+  <span class="logo disp">Red<span class="flourish" style="color:var(--g1a)">Velvet</span></span>
+  <nav>
+   <button data-go="home">Inicio</button>
+   <button data-go="explorar">Explorar</button>
+   <button data-go="perfil">Perfil</button>
+  </nav>
+  <div class="search"><span>🔎</span><input id="search-input" placeholder="Busca arte, merch o artistas…"></div>
+  <button class="iconbtn" title="Iniciar sesión (próximamente)" disabled style="opacity:.5">👤</button>
+  <button class="iconbtn" data-go="carrito">🛒<span class="badge" id="cart-badge" hidden>0</span></button>
+ </div>
+</header>
+<main class="wrap">
+
+<section data-view="home">
+ <div class="hero">
+  <p class="tag" style="background:rgba(0,0,0,.12);color:var(--ink)">Beta · Hecho por y para artistas mexicanos</p>
+  <h1>Vende tu arte.<br>Construye tu nombre.</h1>
+  <p>Portafolio, tienda de merch y comisiones, todo en un solo perfil. Sin cuotas imposibles, sin perderte entre algoritmos.</p>
+  <button class="btn primary" data-go="explorar">Explorar catálogo</button>
+  <button class="btn ghost" data-go="perfil">Ver un perfil de ejemplo</button>
+ </div>
+
+ <div class="section-title"><h2>Artistas destacados</h2><a data-go="explorar">Ver todos →</a></div>
+ <div class="row" id="home-artists"></div>
+
+ <div class="section-title"><h2>Artículos destacados</h2><a data-go="explorar">Ver todos →</a></div>
+ <div class="grid" id="home-products"></div>
+</section>
+
+<section data-view="explorar" hidden>
+ <h2 style="margin-bottom:.8rem">Explorar</h2>
+ <div class="chips" id="cat-chips"></div>
+ <div class="chips">
+  <button class="chip" data-open="1">Solo comisiones abiertas</button>
+ </div>
+ <div class="grid" id="explorar-grid"></div>
+ <p class="empty" id="explorar-empty" hidden>No encontramos nada con esos filtros. Prueba quitando alguno.</p>
+</section>
+
+<section data-view="perfil" hidden>
+ <div class="banner" style="background:linear-gradient(135deg,var(--g5a),var(--g5b))"></div>
+ <div class="pcard">
+  <div class="avatar" style="background:linear-gradient(135deg,var(--g1a),var(--g1b))">🎨</div>
+  <div>
+   <h2>Kore Kore</h2>
+   <p class="note" style="margin:.1rem 0">@koreyseuss · Ilustración, Concept Art y Diseño de Personajes · CDMX</p>
+  </div>
+  <span class="status open" style="margin-left:auto">Comisiones abiertas</span>
+ </div>
+ <p style="max-width:34rem">Ilustrador y concept artist, me especializo en diseño de personajes con mucho color. Si quieres algo a tu medida, mándame mensaje 💌</p>
+
+ <div class="section-title"><h2>Portafolio</h2></div>
+ <div class="grid" id="perfil-portafolio"></div>
+
+ <div class="section-title"><h2>Tienda</h2></div>
+ <div class="grid" id="perfil-tienda"></div>
+</section>
+
+<section data-view="carrito" hidden>
+ <h2 style="margin-bottom:.8rem">Tu carrito</h2>
+ <p class="empty" id="cart-empty">Tu carrito está vacío. Agrega algo desde Explorar.</p>
+ <div class="panel" id="cart-panel" hidden>
+  <div id="cart-lines"></div>
+  <div class="total"><span>Total</span><span id="cart-total">$0 MXN</span></div>
+  <button class="btn primary" id="checkout-btn" style="margin-top:1rem;width:100%">Proceder al pago</button>
+ </div>
+
+ <div class="panel" id="checkout-panel" hidden>
+  <h3 style="margin-bottom:.6rem">Datos de pago (prototipo)</h3>
+  <div class="fieldset">
+   <input placeholder="Nombre completo">
+   <input placeholder="Correo electrónico" type="email">
+   <div class="radios">
+    <label><input type="radio" name="pago" checked> Tarjeta</label>
+    <label><input type="radio" name="pago"> OXXO</label>
+    <label><input type="radio" name="pago"> Transferencia</label>
+   </div>
+  </div>
+  <p class="note">Esto es un prototipo: no se procesa ningún pago real.</p>
+  <button class="btn primary" id="confirm-btn" style="width:100%">Confirmar pedido</button>
+ </div>
+
+ <div class="panel" id="success-panel" hidden style="text-align:center">
+  <p style="font-size:2rem;margin:0">🎉</p>
+  <h3>¡Pedido confirmado!</h3>
+  <p class="note" id="order-note"></p>
+  <button class="btn ghost" data-go="explorar">Seguir explorando</button>
+ </div>
+</section>
+
+</main>
+<footer>Red Velvet · Prototipo interactivo sin fines comerciales, hecho para una presentación escolar.</footer>
+
+<script>
+const GRADS = [['var(--g1a)','var(--g1b)'],['var(--g2a)','var(--g2b)'],['var(--g4a)','var(--g4b)'],['var(--g5a)','var(--g5b)']];
+const EMOJI = ['🎨','🖌️','🧸','🧵','🖼️','✨','🧣','📌'];
+const ARTISTS = [
+  {id:'kore', name:'Kore Kore', spec:'Ilustración, Concept Art y Diseño de Personajes', open:true},
+  {id:'nescuik', name:'Nescuik', spec:'Motion Graphics', open:false},
+  {id:'nyumonya', name:'Nyumonya', spec:'Animación 2D y Diseño de Personajes', open:true}
+];
+const PRODUCTS = [
+  {id:1, title:'Print A4 "Retrato Pastel"', artist:'Kore Kore', price:180, cat:'Ilustración'},
+  {id:2, title:'Comisión busto color', artist:'Kore Kore', price:450, cat:'Comisión'},
+  {id:3, title:'Sticker pack fanart', artist:'Kore Kore', price:90, cat:'Merch'},
+  {id:4, title:'Motion loop para redes', artist:'Nescuik', price:350, cat:'3D'},
+  {id:5, title:'Loop de animación 10s', artist:'Nyumonya', price:300, cat:'Animación 2D'},
+  {id:6, title:'Llavero acrílico', artist:'Nyumonya', price:70, cat:'Merch'},
+  {id:7, title:'Portada para libro', artist:'Kore Kore', price:600, cat:'Ilustración'},
+  {id:8, title:'Reel de motion graphics', artist:'Nescuik', price:400, cat:'3D'}
+];
+const CATS = ['Todos','Ilustración','Animación 2D','3D','Merch','Comisión'];
+
+// ═══ FOTOS (como en el catálogo de Hot Wheels) ═══ Sube las carpetas "Pfp" y "banners" junto a este
+// archivo en GitHub, con una imagen por artista dentro de cada una, y pon aquí su ruta usando
+// el mismo "id" que tiene en ARTISTS. Mientras un artista no tenga entrada aquí, su tarjeta
+// sigue mostrando el degradado y el emoji de siempre, así que puedes ir subiendo de a poco.
+const PFP = {
+  // kore: './Pfp/kore.jpg',
+  // nescuik: './Pfp/nescuik.jpg',
+  // nyumonya: './Pfp/nyumonya.jpg',
+};
+const BANNERS = {
+  // kore: './banners/kore.jpg',
+};
+
+const $=id=>document.getElementById(id);
+const money=n=>`$${n.toLocaleString('es-MX')} MXN`;
+const grad=i=>`background:linear-gradient(135deg,${GRADS[i%GRADS.length][0]},${GRADS[i%GRADS.length][1]})`;
+const artistOf=name=>ARTISTS.find(a=>a.name===name);
+const cart = new Map();
+let activeCat='Todos', onlyOpen=false, query='';
+
+function productCard(p,i){
+  const a=artistOf(p.artist), inCart=cart.get(p.id)||0;
+  return `<div class="card">
+    <div class="thumb" style="${grad(i)}">${EMOJI[i%EMOJI.length]}</div>
+    <span class="tag">${p.cat}</span>
+    <strong>${p.title}</strong>
+    <span class="note">${p.artist}${a?` · <span class="status ${a.open?'open':'closed'}" style="display:inline">${a.open?'Abierta':'Cerrada'}</span>`:''}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.3rem">
+      <span class="price">${money(p.price)}</span>
+      <button class="addbtn" data-add="${p.id}">${inCart?`En carrito (${inCart})`:'Agregar'}</button>
+    </div></div>`;
+}
+function artistCard(a,i){
+  const cover = BANNERS[a.id];
+  const cvStyle = cover ? `background-image:url('${cover}');background-size:cover;background-position:center` : `background:linear-gradient(135deg,${GRADS[(i+2)%GRADS.length][0]},${GRADS[(i+2)%GRADS.length][1]})`;
+  const pf = PFP[a.id];
+  const avStyle = pf ? `background-image:url('${pf}');background-size:cover;background-position:center` : grad(i);
+  return `<div class="artist-card">
+    <div class="a-banner" style="${cvStyle}"></div>
+    <div class="a-body">
+      <div class="avatar" style="${avStyle}">${pf?'':EMOJI[i]}</div>
+      <strong>${a.name}</strong>
+      <span class="note">${a.spec}</span>
+      <span class="status ${a.open?'open':'closed'}">${a.open?'Comisiones abiertas':'Comisiones cerradas'}</span>
+    </div>
+  </div>`;
+}
+function renderHome(){
+  $('home-artists').innerHTML = ARTISTS.map(artistCard).join('');
+  $('home-products').innerHTML = PRODUCTS.slice(0,4).map(productCard).join('');
+}
+function renderChips(){
+  $('cat-chips').innerHTML = CATS.map(c=>`<button class="chip ${c===activeCat?'on':''}" data-cat="${c}">${c}</button>`).join('');
+}
+function renderExplorar(){
+  renderChips();
+  const openIds = new Set(ARTISTS.filter(a=>a.open).map(a=>a.name));
+  const list = PRODUCTS.filter(p =>
+    (activeCat==='Todos' || p.cat===activeCat) &&
+    (!onlyOpen || openIds.has(p.artist)) &&
+    (!query || (p.title+p.artist).toLowerCase().includes(query)));
+  $('explorar-grid').innerHTML = list.map(productCard).join('');
+  $('explorar-empty').hidden = list.length>0;
+}
+function renderPerfil(){
+  $('perfil-portafolio').innerHTML = EMOJI.slice(0,4).map((e,i)=>`<div class="card"><div class="thumb" style="${grad(i)}">${e}</div><span class="note">Pieza de portafolio ${i+1}</span></div>`).join('');
+  $('perfil-tienda').innerHTML = PRODUCTS.filter(p=>p.artist==='Kore Kore').map(productCard).join('');
+}
+function renderCart(){
+  const items=[...cart].map(([id,q])=>({p:PRODUCTS.find(x=>x.id===id),q}));
+  $('cart-badge').hidden = items.length===0;
+  $('cart-badge').textContent = items.reduce((s,{q})=>s+q,0);
+  $('cart-empty').hidden = items.length>0;
+  $('cart-panel').hidden = items.length===0;
+  const total = items.reduce((s,{p,q})=>s+p.price*q,0);
+  $('cart-lines').innerHTML = items.map(({p,q})=>`<div class="cartline">
+    <div><strong>${p.title}</strong><br><span class="note">${money(p.price)} c/u</span></div>
+    <div style="display:flex;align-items:center;gap:.5rem">
+      <button class="qtybtn" data-dec="${p.id}">−</button><span>${q}</span><button class="qtybtn" data-inc="${p.id}">+</button>
+    </div></div>`).join('');
+  $('cart-total').textContent = money(total);
+  document.querySelectorAll('[data-add]').forEach(b=>{
+    const id=Number(b.dataset.add), q=cart.get(id)||0;
+    b.textContent = q?`En carrito (${q})`:'Agregar';
+  });
+}
+document.body.addEventListener('click', e=>{
+  const go=e.target.closest('[data-go]'); if(go){ location.hash='#'+go.dataset.go; return; }
+  const add=e.target.closest('[data-add]'); if(add){ const id=Number(add.dataset.add); cart.set(id,(cart.get(id)||0)+1); renderCart(); return; }
+  const inc=e.target.closest('[data-inc]'); if(inc){ const id=Number(inc.dataset.inc); cart.set(id,cart.get(id)+1); renderCart(); return; }
+  const dec=e.target.closest('[data-dec]'); if(dec){ const id=Number(dec.dataset.dec); const q=cart.get(id)-1; q>0?cart.set(id,q):cart.delete(id); renderCart(); return; }
+  const cat=e.target.closest('[data-cat]'); if(cat){ activeCat=cat.dataset.cat; renderExplorar(); return; }
+  const op=e.target.closest('[data-open]'); if(op){ onlyOpen=!onlyOpen; op.classList.toggle('on',onlyOpen); renderExplorar(); return; }
+  if(e.target.id==='checkout-btn'){ $('cart-panel').hidden=true; $('checkout-panel').hidden=false; return; }
+  if(e.target.id==='confirm-btn'){
+    $('checkout-panel').hidden=true; $('success-panel').hidden=false;
+    $('order-note').textContent = 'Folio demo: RV-'+Math.random().toString(36).slice(2,7).toUpperCase();
+    cart.clear(); renderCart();
+    return;
+  }
+});
+$('search-input').addEventListener('input', e=>{ query=e.target.value.trim().toLowerCase(); if(location.hash!=='#explorar') location.hash='#explorar'; renderExplorar(); });
+
+const VIEWS=['home','explorar','perfil','carrito'];
+function route(){
+  const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+  VIEWS.forEach(name=>{
+    document.querySelector(`[data-view="${name}"]`).hidden = name!==v;
+  });
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on', b.dataset.go===v));
+  if(v==='carrito'){ $('cart-panel').hidden = cart.size===0; $('checkout-panel').hidden=true; $('success-panel').hidden=true; renderCart(); }
+  window.scrollTo(0,0);
+}
+addEventListener('hashchange', route);
+renderHome(); renderExplorar(); renderPerfil(); renderCart(); route();
+</script>
+</body></html>
