@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Red Velvet · Prototipo</title>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Poppins:wght@700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#151020;--bg2:#1d1729;--text:#f5f1fa;--muted:#c7bedf;--card:#241c33;--line:rgba(255,255,255,.12);
@@ -16,20 +16,26 @@
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--text);font-family:'Quicksand',sans-serif;min-height:100%}
-h1,h2,h3,.disp{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.02em;margin:0}
+h1,h2,h3{font-weight:800;margin:0}
+.disp{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.02em}
 .flourish{font-family:'Bungee',cursive;text-transform:none;letter-spacing:0}
+.sec-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.15rem}
 [hidden]{display:none!important}
 button,input{font-family:inherit}
 a{color:inherit}
 .wrap{max-width:1080px;margin:0 auto;padding:0 1.1rem}
 header{position:sticky;top:0;z-index:5;background:var(--bg2);border-bottom:1px solid var(--line);padding:env(safe-area-inset-top,0px) 0 0}
-.topbar{display:flex;align-items:center;gap:1rem;padding:.8rem 1.1rem;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.topbar{display:flex;align-items:center;gap:.7rem;padding:.8rem 1.1rem;max-width:1080px;margin:0 auto;flex-wrap:wrap}
 .logo{font-size:1.4rem;color:var(--g1b)}
-nav{display:flex;gap:.3rem;margin-left:.5rem;flex-wrap:wrap}
+nav{display:flex;gap:.3rem;margin-left:.3rem;flex-wrap:wrap}
 nav button{background:none;border:none;color:var(--muted);font-weight:700;padding:.45rem .7rem;border-radius:999px;cursor:pointer}
 nav button.on{background:linear-gradient(135deg,var(--g1a),var(--g1b));color:var(--ink)}
-.search{flex:1;min-width:140px;display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem;gap:.4rem;align-items:center}
-.search input{background:none;border:none;color:var(--text);outline:none;width:100%}
+.search{flex:0 1 190px;display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.35rem .8rem;gap:.4rem;align-items:center}
+.search input{background:none;border:none;color:var(--text);outline:none;width:100%;font-size:.88rem}
+.topbtn{border:none;border-radius:999px;padding:.5rem 1rem;font-weight:800;font-size:.85rem;cursor:pointer;white-space:nowrap}
+.topbtn.join{background:var(--accent2);color:var(--ink)}
+.topbtn.login{background:var(--bg2);color:var(--text);border:1px solid var(--line)}
+.right-actions{display:flex;gap:.5rem;align-items:center;margin-left:auto}
 .iconbtn{position:relative;background:var(--card);border:1px solid var(--line);border-radius:999px;width:38px;height:38px;display:grid;place-items:center;cursor:pointer;color:var(--text)}
 .badge{position:absolute;top:-6px;right:-6px;background:var(--g5b);color:var(--ink);font-size:.7rem;font-weight:700;border-radius:999px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 3px}
 main{padding:1.4rem 0 3rem}
@@ -39,13 +45,13 @@ main{padding:1.4rem 0 3rem}
 .btn{display:inline-block;border:none;border-radius:999px;padding:.65rem 1.3rem;font-weight:700;cursor:pointer}
 .btn.primary{background:var(--ink);color:#fff}
 .btn.ghost{background:rgba(255,255,255,.55);color:var(--ink)}
-.section-title{display:flex;justify-content:space-between;align-items:baseline;margin:1.6rem 0 .8rem}
-.section-title h2{font-size:1.2rem}
+.section-title{display:flex;justify-content:space-between;align-items:baseline;margin:1.8rem 0 .8rem}
 .section-title a{font-size:.85rem;color:var(--accent2);text-decoration:underline;cursor:pointer}
 .row{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:.8rem;display:flex;flex-direction:column;gap:.4rem}
-.thumb{aspect-ratio:4/3;border-radius:12px;display:grid;place-items:center;font-size:1.8rem;color:var(--ink)}
+.card.clickable{cursor:pointer}
+.thumb{aspect-ratio:4/3;border-radius:12px;display:grid;place-items:center;font-size:1.8rem;color:var(--ink);background-color:var(--card);background-size:cover;background-position:center}
 .tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.08);padding:.15rem .5rem;border-radius:999px;color:var(--muted);width:fit-content}
 .status{font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:999px;width:fit-content}
 .status.open{background:#2fae6522;color:#4fd98a}
@@ -54,7 +60,7 @@ main{padding:1.4rem 0 3rem}
 .a-banner{height:64px;background-size:cover;background-position:center}
 .a-body{padding:0 .85rem .85rem;margin-top:-24px;display:flex;flex-direction:column;align-items:flex-start;gap:.3rem}
 .a-body .avatar{width:46px;height:46px;border:3px solid var(--card)}
-.avatar{width:52px;height:52px;border-radius:999px;flex-shrink:0;display:grid;place-items:center;font-size:1.3rem;color:var(--ink)}
+.avatar{width:52px;height:52px;border-radius:999px;flex-shrink:0;display:grid;place-items:center;font-size:1.3rem;color:var(--ink);background-size:cover;background-position:center}
 .price{font-weight:700}
 .addbtn{border:none;border-radius:999px;padding:.4rem .8rem;font-weight:700;cursor:pointer;background:var(--g4b);color:#fff;font-size:.82rem}
 .addbtn:disabled{opacity:.5;cursor:not-allowed}
@@ -64,18 +70,50 @@ main{padding:1.4rem 0 3rem}
 .banner{height:110px;border-radius:18px;margin-bottom:-34px}
 .pcard{display:flex;gap:1rem;align-items:flex-end;padding:0 .6rem}
 .pcard .avatar{width:76px;height:76px;font-size:2rem;border:4px solid var(--bg)}
+.pcard h2{font-weight:800}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem;margin-top:1rem}
+.empty{text-align:center;color:var(--muted);padding:2rem 1rem}
+.note{font-size:.78rem;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.8rem;padding:1.4rem 0 2rem}
+.overlay-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay-bg.show{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;height:100%;width:min(380px,92vw);background:var(--bg2);z-index:41;
+  transform:translateX(105%);transition:transform .25s ease;display:flex;flex-direction:column;
+  padding:calc(1rem + env(safe-area-inset-top,0px)) 1rem calc(1rem + env(safe-area-inset-bottom,0px));box-shadow:-12px 0 30px rgba(0,0,0,.35)}
+.cart-drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.drawer-body{flex:1;overflow:auto}
 .cartline{display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
 .cartline:last-child{border-bottom:none}
 .qtybtn{width:26px;height:26px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--text);cursor:pointer}
-.total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--line)}
-.empty{text-align:center;color:var(--muted);padding:2rem 1rem}
-.fieldset{display:grid;gap:.6rem;margin:.8rem 0}
-.fieldset input,.fieldset select{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:.6rem .8rem;color:var(--text)}
-.radios{display:flex;gap:.6rem;flex-wrap:wrap}
-.radios label{display:flex;gap:.4rem;align-items:center;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;font-size:.88rem}
-.note{font-size:.78rem;color:var(--muted)}
-footer{text-align:center;color:var(--muted);font-size:.8rem;padding:1.4rem 0 2rem}
+.stepper{display:flex;align-items:center;gap:.5rem}
+.total-row{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700;margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--line)}
+.fieldset{display:grid;gap:.6rem;margin:.6rem 0}
+.fieldset input{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:.6rem .8rem;color:var(--text)}
+.radios{display:flex;gap:.5rem;flex-wrap:wrap}
+.radios label{display:flex;gap:.4rem;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:.45rem .7rem;font-size:.84rem}
+.modal-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.96);width:min(420px,92vw);max-height:86vh;overflow:auto;
+  background:var(--bg2);border-radius:18px;padding:1.2rem;z-index:41;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s}
+.modal-panel.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.modal-panel.wide{width:min(640px,94vw)}
+.tier{display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.55rem 0;border-bottom:1px solid var(--line)}
+.tier label{display:flex;gap:.5rem;align-items:center;font-weight:700}
+.cm-artist{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.6rem;margin:.9rem 0}
+.pay-chips{display:flex;gap:.4rem;flex-wrap:wrap;margin:.6rem 0}
+.pay-chips span{font-size:.72rem;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.2rem .5rem}
+.merch-layout{display:flex;gap:1.1rem;flex-wrap:wrap}
+.merch-gallery{position:relative;flex:1 1 220px}
+.g-img{width:100%;aspect-ratio:4/3;border-radius:12px;background-size:cover;background-position:center;display:grid;place-items:center;font-size:2.4rem;color:var(--ink);background-color:var(--card)}
+.g-nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:999px;background:rgba(255,255,255,.85);color:#111;display:grid;place-items:center;border:none;cursor:pointer;font-size:1.2rem;z-index:2}
+.g-prev{left:.4rem}.g-next{right:.4rem}
+.g-dots{position:absolute;bottom:.5rem;left:0;right:0;display:flex;justify-content:center;gap:5px;z-index:2}
+.g-dots span{width:7px;height:7px;border-radius:999px;background:rgba(255,255,255,.55)}
+.g-dots span.on{background:#fff}
+.merch-info{flex:1 1 220px;display:flex;flex-direction:column;gap:.45rem}
+.reviews{margin-top:1.1rem;border-top:1px solid var(--line);padding-top:.7rem}
+.review{padding:.45rem 0;border-bottom:1px solid var(--line)}
+.review:last-child{border-bottom:none}
+.stars{color:#ffce54;font-size:.85rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -86,39 +124,48 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:1.4rem 0 2re
   <nav>
    <button data-go="home">Inicio</button>
    <button data-go="explorar">Explorar</button>
-   <button data-go="perfil">Perfil</button>
   </nav>
-  <div class="search"><span>🔎</span><input id="search-input" placeholder="Busca arte, merch o artistas…"></div>
-  <button class="iconbtn" title="Iniciar sesión (próximamente)" disabled style="opacity:.5">👤</button>
-  <button class="iconbtn" data-go="carrito">🛒<span class="badge" id="cart-badge" hidden>0</span></button>
+  <div class="search"><span>🔎</span><input id="search-input" placeholder="Buscar…"></div>
+  <div class="right-actions">
+   <button class="topbtn join">Únete como artista</button>
+   <button class="topbtn login">Iniciar sesión</button>
+   <button class="iconbtn" id="cart-open">🛒<span class="badge" id="cart-badge" hidden>0</span></button>
+  </div>
  </div>
 </header>
 <main class="wrap">
 
 <section data-view="home">
  <div class="hero">
-  <p class="tag" style="background:rgba(0,0,0,.12);color:var(--ink)">Beta · Hecho por y para artistas mexicanos</p>
-  <h1>Vende tu arte.<br>Construye tu nombre.</h1>
+  <p class="tag" style="background:rgba(0,0,0,.12);color:var(--ink)">Prototipo · Hecho por y para artistas </p>
+  <h1 class="disp">Vende tu arte.<br>Construye tu nombre.</h1>
   <p>Portafolio, tienda de merch y comisiones, todo en un solo perfil. Sin cuotas imposibles, sin perderte entre algoritmos.</p>
   <button class="btn primary" data-go="explorar">Explorar catálogo</button>
   <button class="btn ghost" data-go="perfil">Ver un perfil de ejemplo</button>
  </div>
 
- <div class="section-title"><h2>Artistas destacados</h2><a data-go="explorar">Ver todos →</a></div>
+ <div class="section-title"><h2 class="sec-title">Artistas destacados</h2><a data-go="explorar">Ver todos →</a></div>
  <div class="row" id="home-artists"></div>
 
- <div class="section-title"><h2>Artículos destacados</h2><a data-go="explorar">Ver todos →</a></div>
- <div class="grid" id="home-products"></div>
+ <div class="section-title"><h2 class="sec-title">Comisiones destacadas</h2><a data-go="explorar">Ver todas →</a></div>
+ <div class="grid" id="home-comisiones"></div>
+
+ <div class="section-title"><h2 class="sec-title">Merch destacado</h2><a data-go="explorar">Ver todo →</a></div>
+ <div class="grid" id="home-merch"></div>
 </section>
 
 <section data-view="explorar" hidden>
- <h2 style="margin-bottom:.8rem">Explorar</h2>
+ <h2 class="sec-title" style="margin-bottom:.8rem">Explorar</h2>
  <div class="chips" id="cat-chips"></div>
- <div class="chips">
-  <button class="chip" data-open="1">Solo comisiones abiertas</button>
- </div>
- <div class="grid" id="explorar-grid"></div>
- <p class="empty" id="explorar-empty" hidden>No encontramos nada con esos filtros. Prueba quitando alguno.</p>
+ <div class="chips"><button class="chip" data-open="1">Solo comisiones abiertas</button></div>
+
+ <div class="section-title"><h2 class="sec-title">Comisiones</h2></div>
+ <div class="grid" id="explorar-comisiones"></div>
+ <p class="empty" id="explorar-comisiones-empty" hidden>No hay comisiones con esos filtros.</p>
+
+ <div class="section-title"><h2 class="sec-title">Merch</h2></div>
+ <div class="grid" id="explorar-merch"></div>
+ <p class="empty" id="explorar-merch-empty" hidden>No hay merch con esos filtros.</p>
 </section>
 
 <section data-view="perfil" hidden>
@@ -132,48 +179,108 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:1.4rem 0 2re
   <span class="status open" style="margin-left:auto">Comisiones abiertas</span>
  </div>
  <p style="max-width:34rem">Ilustrador y concept artist, me especializo en diseño de personajes con mucho color. Si quieres algo a tu medida, mándame mensaje 💌</p>
-
- <div class="section-title"><h2>Portafolio</h2></div>
+ <div class="section-title"><h2 class="sec-title">Portafolio</h2></div>
  <div class="grid" id="perfil-portafolio"></div>
-
- <div class="section-title"><h2>Tienda</h2></div>
+ <div class="section-title"><h2 class="sec-title">Tienda</h2></div>
  <div class="grid" id="perfil-tienda"></div>
-</section>
-
-<section data-view="carrito" hidden>
- <h2 style="margin-bottom:.8rem">Tu carrito</h2>
- <p class="empty" id="cart-empty">Tu carrito está vacío. Agrega algo desde Explorar.</p>
- <div class="panel" id="cart-panel" hidden>
-  <div id="cart-lines"></div>
-  <div class="total"><span>Total</span><span id="cart-total">$0 MXN</span></div>
-  <button class="btn primary" id="checkout-btn" style="margin-top:1rem;width:100%">Proceder al pago</button>
- </div>
-
- <div class="panel" id="checkout-panel" hidden>
-  <h3 style="margin-bottom:.6rem">Datos de pago (prototipo)</h3>
-  <div class="fieldset">
-   <input placeholder="Nombre completo">
-   <input placeholder="Correo electrónico" type="email">
-   <div class="radios">
-    <label><input type="radio" name="pago" checked> Tarjeta</label>
-    <label><input type="radio" name="pago"> OXXO</label>
-    <label><input type="radio" name="pago"> Transferencia</label>
-   </div>
-  </div>
-  <p class="note">Esto es un prototipo: no se procesa ningún pago real.</p>
-  <button class="btn primary" id="confirm-btn" style="width:100%">Confirmar pedido</button>
- </div>
-
- <div class="panel" id="success-panel" hidden style="text-align:center">
-  <p style="font-size:2rem;margin:0">🎉</p>
-  <h3>¡Pedido confirmado!</h3>
-  <p class="note" id="order-note"></p>
-  <button class="btn ghost" data-go="explorar">Seguir explorando</button>
- </div>
 </section>
 
 </main>
 <footer>Red Velvet · Prototipo interactivo sin fines comerciales, hecho para una presentación escolar.</footer>
+
+<div id="backdrop" class="overlay-bg"></div>
+
+<aside id="cart-drawer" class="cart-drawer">
+ <div class="drawer-head"><h3 class="sec-title">Tu carrito</h3><button class="iconbtn" id="cart-close">×</button></div>
+ <div class="drawer-body">
+  <div id="cart-view-list">
+   <p class="empty" id="cart-empty">Tu carrito está vacío. Agrega merch desde Explorar.</p>
+   <div id="cart-lines"></div>
+  </div>
+  <div id="cart-view-checkout" hidden>
+   <h3 style="font-size:.95rem">Datos de pago (prototipo)</h3>
+   <div class="fieldset">
+    <input placeholder="Nombre completo">
+    <input placeholder="Correo electrónico" type="email">
+    <div class="radios">
+     <label><input type="radio" name="pago" checked> Tarjeta</label>
+     <label><input type="radio" name="pago"> OXXO</label>
+     <label><input type="radio" name="pago"> Transferencia</label>
+    </div>
+   </div>
+   <p class="note">Esto es un prototipo: no se procesa ningún pago real.</p>
+  </div>
+  <div id="cart-view-success" hidden style="text-align:center">
+   <p style="font-size:2rem;margin:0">🎉</p>
+   <h3>¡Pedido confirmado!</h3>
+   <p class="note" id="order-note"></p>
+  </div>
+ </div>
+ <div class="total-row" id="cart-total-row"><span>Total</span><span id="cart-total">$0 MXN</span></div>
+ <button class="btn primary" id="cart-footer-btn" style="width:100%;margin-top:.8rem">Proceder al pago</button>
+</aside>
+
+<!-- Modal de comisión -->
+<div id="comm-modal" class="modal-panel">
+ <button class="iconbtn" id="comm-close" style="position:absolute;top:.9rem;right:.9rem;z-index:3">×</button>
+ <div class="merch-gallery" style="margin-bottom:.8rem">
+  <div class="g-img" id="cm-gal-main"></div>
+  <button class="g-nav g-prev" id="cm-gal-prev" data-gal-for="cm" hidden>‹</button>
+  <button class="g-nav g-next" id="cm-gal-next" data-gal-for="cm" hidden>›</button>
+  <div class="g-dots" id="cm-gal-dots"></div>
+ </div>
+ <h3 id="cm-title" style="padding-right:2.4rem"></h3>
+ <p class="note">Desde <strong id="cm-price" style="color:var(--text)"></strong></p>
+ <div class="tier"><label>✅ Personal</label><span class="note">Incluido</span></div>
+ <div class="tier"><label>✅ Comercial: Contenido</label><span class="note">Incluido</span></div>
+ <div class="tier"><label><input type="checkbox" id="cm-addon"> Comercial: Mercancía</label><span class="note" id="cm-addon-price"></span></div>
+ <p class="note" id="cm-desc" style="margin-top:.7rem"></p>
+ <div class="cm-artist">
+  <div class="avatar" id="cm-avatar" style="width:40px;height:40px;font-size:1.1rem"></div>
+  <div style="flex:1"><strong id="cm-artist-name" style="font-size:.9rem"></strong><br><span class="note" id="cm-artist-status"></span></div>
+  <button class="chip">Seguir</button>
+ </div>
+ <p class="note">Formas de pago aceptadas:</p>
+ <div class="pay-chips"><span>💳 Tarjeta</span><span>🅿️ PayPal</span><span>🏪 OXXO</span><span>🏦 Transferencia</span></div>
+ <button class="btn primary" id="comm-request-btn" style="width:100%;margin-top:.4rem">Aceptar términos para iniciar solicitud</button>
+ <div class="reviews">
+  <p style="font-weight:700;font-size:.9rem">Reseñas</p>
+  <div class="review"><span class="stars">★★★★★</span> <strong style="font-size:.85rem">@aimep3</strong><br><span class="note">¡Quedó hermoso! Súper atenta durante todo el proceso y respetó el tiempo de entrega.</span></div>
+  <div class="review"><span class="stars">★★★★★</span> <strong style="font-size:.85rem">@elmaau</strong><br><span class="note">Excelente calidad, superó lo que tenía en mente. Totalmente recomendado.</span></div>
+  <div class="review"><span class="stars">★★★★☆</span> <strong style="font-size:.85rem">@lupita_tiktok</strong><br><span class="note">Me encantó el resultado, muy fiel a lo que pedí. Volveré a pedir seguro.</span></div>
+ </div>
+</div>
+
+<!-- Modal de producto (merch) -->
+<div id="merch-modal" class="modal-panel wide">
+ <button class="iconbtn" id="merch-close" style="position:absolute;top:.9rem;right:.9rem;z-index:3">×</button>
+ <div class="merch-layout">
+  <div class="merch-gallery">
+   <div class="g-img" id="mm-gal-main"></div>
+   <button class="g-nav g-prev" id="mm-gal-prev" data-gal-for="mm" hidden>‹</button>
+   <button class="g-nav g-next" id="mm-gal-next" data-gal-for="mm" hidden>›</button>
+   <div class="g-dots" id="mm-gal-dots"></div>
+  </div>
+  <div class="merch-info">
+   <span class="tag" id="mm-cat"></span>
+   <h3 id="mm-title" style="padding-right:1.6rem"></h3>
+   <span class="note" id="mm-artist"></span>
+   <p class="note" id="mm-desc"></p>
+   <div>
+    <p class="note" style="margin-bottom:.3rem">Tamaño</p>
+    <div class="chips" id="mm-sizes" style="margin-bottom:0"></div>
+   </div>
+   <strong id="mm-price" style="font-size:1.25rem"></strong>
+   <div id="mm-action"></div>
+  </div>
+ </div>
+ <div class="reviews">
+  <p style="font-weight:700;font-size:.9rem">Reseñas</p>
+  <div class="review"><span class="stars">★★★★★</span> <strong style="font-size:.85rem">@bunnymoonart</strong><br><span class="note">Llegó perfecto y muy bien empacado, los colores se ven idénticos a la foto.</span></div>
+  <div class="review"><span class="stars">★★★★★</span> <strong style="font-size:.85rem">@sori_supu</strong><br><span class="note">Calidad de impresión increíble, ya pedí otro para regalar.</span></div>
+  <div class="review"><span class="stars">★★★★☆</span> <strong style="font-size:.85rem">@luuxiifer</strong><br><span class="note">Muy bonito, tardó un poco más de lo esperado pero valió la pena.</span></div>
+ </div>
+</div>
 
 <script>
 const GRADS = [['var(--g1a)','var(--g1b)'],['var(--g2a)','var(--g2b)'],['var(--g4a)','var(--g4b)'],['var(--g5a)','var(--g5b)']];
@@ -181,51 +288,84 @@ const EMOJI = ['🎨','🖌️','🧸','🧵','🖼️','✨','🧣','📌'];
 const ARTISTS = [
   {id:'kore', name:'Kore Kore', spec:'Ilustración, Concept Art y Diseño de Personajes', open:true},
   {id:'nescuik', name:'Nescuik', spec:'Motion Graphics', open:false},
-  {id:'nyumonya', name:'Nyumonya', spec:'Animación 2D y Diseño de Personajes', open:true}
+  {id:'nyumonya', name:'Nyumonya', spec:'Animación 2D y Diseño de Personajes', open:true},
+  {id:'zyan', name:'Zyan', spec:'Diseño de Marca', open:false}
 ];
-const PRODUCTS = [
-  {id:1, title:'Print A4 "Retrato Pastel"', artist:'Kore Kore', price:180, cat:'Ilustración'},
-  {id:2, title:'Comisión busto color', artist:'Kore Kore', price:450, cat:'Comisión'},
-  {id:3, title:'Sticker pack fanart', artist:'Kore Kore', price:90, cat:'Merch'},
-  {id:4, title:'Motion loop para redes', artist:'Nescuik', price:350, cat:'3D'},
-  {id:5, title:'Loop de animación 10s', artist:'Nyumonya', price:300, cat:'Animación 2D'},
-  {id:6, title:'Llavero acrílico', artist:'Nyumonya', price:70, cat:'Merch'},
-  {id:7, title:'Portada para libro', artist:'Kore Kore', price:600, cat:'Ilustración'},
-  {id:8, title:'Reel de motion graphics', artist:'Nescuik', price:400, cat:'3D'}
+const COMISIONES = [
+  {id:'com1', title:'Ilustración de Personaje Chibi', artist:'Kore Kore', cat:'Ilustración', price:350, addon:480, desc:'Personaje chibi hasta busto, ilustrado con fondo simple, puede ser personaje Original o Fanart. Incluye 2 rondas de cambios únicamente desde boceto y 1 cambio de color base, no cambios de estilo. Entrega en PNG y JPEG.'},
+  {id:'com2', title:'Motion loop para redes', artist:'Nescuik', cat:'Motion Graphics', price:300, addon:400, desc:'Loop animado de 5-10s listo para Instagram/TikTok, con tu logo o personaje. Incluye 2 rondas en velocidad y tipo de animación. Entrega en MP4 y GIF.'},
+  {id:'com3', title:'Animación 2D corta (10s)', artist:'Nyumonya', cat:'Animación 2D', price:500, addon:650, desc:'Secuencia animada con colores flat con tu personaje Original o Fanart. Incluye 1 ronda de cambios desde Rough y 1 cambio de color base. Entrega en MP4 y GIF'},
+  {id:'com4', title:'Ilustración de Personaje', artist:'Kore Kore', cat:'Ilustración', price:600, addon:650, desc:'Ilustración de personaje completo, con pose de tu preferencia, puede ser Original o Fanart en fondo simple. Incluye 2 rondas de cambios únicamente desde boceto y 1 cambio de color base, no cambios de estilo. Entrega en PNG y JPEG.'}
 ];
-const CATS = ['Todos','Ilustración','Animación 2D','3D','Merch','Comisión'];
+const MERCH = [
+  {id:'mer1', title:'Print A4 "Lexa Hexbringer"', artist:'Kore Kore', cat:'Ilustración', price:180, desc:'Impresión en papel mate de alta calidad, lista para enmarcar. Personaje: Lexa Hexbringer de Fortnitemares. ', sizes:['A5','A4','A3']},
+  {id:'mer2', title:'Sticker pack Valorant', artist:'Kore Kore', cat:'Merch', price:45, desc:'Set de 5 stickers vinílicos resistentes al agua.', sizes:['Único']},
+  {id:'mer3', title:'Llavero acrílico', artist:'Kore Kore', cat:'Merch', price:110, desc:'Llavero de acrílico con diseño a doble cara, 7cm.', sizes:['Único']},
+  {id:'mer4', title:'Boxset Digital Circus', artist:'Nescuik', cat:'Merch', price:330, desc:'Caja que incluye 9 botones de los personajes de Digital Circus (Pomni, Jax, Caine, Kinger, Ragatha, Zooble, Gangle, Ribbit y Gumigoo) junto con 4 stickers vinílicos de Pomni, Jax, Ragatha y Caine.', sizes:['Único']},
+  {id: 'mer5', title: 'Llavero acrílico', artist: 'Nyumonya', cat: 'Merch', price: 120, desc: 'Llavero de acrílico con diseño a doble cara, 7cm.', sizes: ['Tetopera', 'Pure Vanilla', 'Ankha', 'ENA']}
+];
+const CATS = ['Todos','Ilustración','Animación 2D','Motion Graphics','Diseño de Personajes','Merch', 'Diseño de Marca'];
 
-
+// INSERCION DE IMGS
 const PFP = {
   kore: './pfp/P_korekore.jpg',
   nescuik: './pfp/P_nescuik.jpg',
-  nyumonya: './pfp/P_nyumonya.jpg'
+  nyumonya: './pfp/P_nyumonya.jpg',
+  zyan: './pfp/P_zyan.jpg'
 };
 const BANNERS = {
-  kore: './banners/B_Korekore.webp',
+  kore: './banners/B_korekore.webp',
   nescuik: './banners/B_nescuik.png',
-  nyumonya: './banners/B_nyumonya.png'
+  nyumonya: './banners/B_nyumonya.png',
+  zyan: './banners/B_zyan.png'
+};
+const MERCH_IMG = {
+  mer1: ['./merch/Lexa.jpg', './merch/Lexa-2.jpg'],
+  mer2: ['./merch/Val1.jpg', './merch/Val2.jpg', './merch/Val3.jpg', './merch/Val4.jpg', './merch/Val5.jpg'],
+  mer3: ['./merch/Llav1.jpg', './merch/Llav2.jpg', './merch/Llav3.jpg', './merch/Llav4.jpg'],
+  mer4: ['./merch/Boxset.jpg', './merch/Botodos.jpg'],
+  mer5: ['./merch/Tetopera.jpg', './merch/PureVanilla.jpg', './merch/Ankha.jpg', './merch/ENA.jpg']
+};
+const COMISION_IMG = {
+  com1: ['./comisiones/chibi1.jpg', './comisiones/chibi2.jpg', './comisiones/chibi3.jpg', './comisiones/chibi4.jpg'],
+  com2: ['./comisiones/Motion1.jpg'],
+  com3: ['./comisiones/3.jpg'],
+  com4: ['./comisiones/com1.jpg', './comisiones/com2.jpg', './comisiones/com3.jpg']
 };
 
 const $=id=>document.getElementById(id);
 const money=n=>`$${n.toLocaleString('es-MX')} MXN`;
 const grad=i=>`background:linear-gradient(135deg,${GRADS[i%GRADS.length][0]},${GRADS[i%GRADS.length][1]})`;
 const artistOf=name=>ARTISTS.find(a=>a.name===name);
+const findMerch=id=>MERCH.find(p=>p.id===id);
+const findComm=id=>COMISIONES.find(p=>p.id===id);
 const cart = new Map();
 let activeCat='Todos', onlyOpen=false, query='';
+let openMerchId=null;
+let gal={images:[],idx:0,mainId:null,dotsId:null};
 
-function productCard(p,i){
-  const a=artistOf(p.artist), inCart=cart.get(p.id)||0;
-  return `<div class="card">
-    <div class="thumb" style="${grad(i)}">${EMOJI[i%EMOJI.length]}</div>
-    <span class="tag">${p.cat}</span>
-    <strong>${p.title}</strong>
-    <span class="note">${p.artist}${a?` · <span class="status ${a.open?'open':'closed'}" style="display:inline">${a.open?'Abierta':'Cerrada'}</span>`:''}</span>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.3rem">
-      <span class="price">${money(p.price)}</span>
-      <button class="addbtn" data-add="${p.id}">${inCart?`En carrito (${inCart})`:'Agregar'}</button>
-    </div></div>`;
+function setGallery(images,mainId,dotsId){ gal={images:images||[],idx:0,mainId,dotsId}; paintGallery(); }
+function paintGallery(){
+  if(!gal.images.length) return;
+  $(gal.mainId).style.backgroundImage = `url('${gal.images[gal.idx]}')`;
+  const d=$(gal.dotsId); if(d) d.innerHTML = gal.images.map((_,k)=>`<span class="${k===gal.idx?'on':''}"></span>`).join('');
 }
+function stepGallery(dir){ if(!gal.images.length) return; gal.idx=(gal.idx+dir+gal.images.length)%gal.images.length; paintGallery(); }
+function fillGallery(mainId,prevId,nextId,dotsId,images,gradIdx){
+  if(images && images.length){
+    $(mainId).style.cssText = `background-image:url('${images[0]}');background-size:cover;background-position:center`;
+    $(mainId).textContent='';
+    $(prevId).hidden = $(nextId).hidden = images.length<2;
+    setGallery(images,mainId,dotsId);
+  } else {
+    $(mainId).style.cssText = grad(gradIdx);
+    $(mainId).textContent = EMOJI[gradIdx%EMOJI.length];
+    $(prevId).hidden = $(nextId).hidden = true;
+    $(dotsId).innerHTML='';
+    gal={images:[],idx:0,mainId:null,dotsId:null};
+  }
+}
+
 function artistCard(a,i){
   const cover = BANNERS[a.id];
   const cvStyle = cover ? `background-image:url('${cover}');background-size:cover;background-position:center` : `background:linear-gradient(135deg,${GRADS[(i+2)%GRADS.length][0]},${GRADS[(i+2)%GRADS.length][1]})`;
@@ -241,70 +381,171 @@ function artistCard(a,i){
     </div>
   </div>`;
 }
+function merchCard(p,i){
+  const q=cart.get(p.id)||0;
+  const imgs=MERCH_IMG[p.id];
+  const thumbStyle = imgs&&imgs.length ? `background-image:url('${imgs[0]}')` : grad(i);
+  const action = q>0
+    ? `<div class="stepper"><button class="qtybtn" data-dec="${p.id}">−</button><span>${q}</span><button class="qtybtn" data-inc="${p.id}">+</button></div>`
+    : `<button class="addbtn" data-add="${p.id}">Agregar</button>`;
+  return `<div class="card clickable" data-merch="${p.id}">
+    <div class="thumb" style="${thumbStyle}">${imgs&&imgs.length?'':EMOJI[i%EMOJI.length]}</div>
+    <span class="tag">${p.cat}</span>
+    <strong>${p.title}</strong>
+    <span class="note">${p.artist}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.3rem">
+      <span class="price">${money(p.price)}</span>
+      ${action}
+    </div></div>`;
+}
+function commissionCard(p,i){
+  const a=artistOf(p.artist);
+  const imgs=COMISION_IMG[p.id];
+  const thumbStyle = imgs&&imgs.length ? `background-image:url('${imgs[0]}')` : grad(i);
+  return `<div class="card clickable" data-comm="${p.id}">
+    <div class="thumb" style="${thumbStyle}">${imgs&&imgs.length?'':EMOJI[i%EMOJI.length]}</div>
+    <span class="tag">${p.cat}</span>
+    <strong>${p.title}</strong>
+    <span class="note">${p.artist}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.3rem">
+      <span class="price">Desde ${money(p.price)}</span>
+      <span class="status ${a.open?'open':'closed'}">${a.open?'Abierta':'Cerrada'}</span>
+    </div></div>`;
+}
 function renderHome(){
   $('home-artists').innerHTML = ARTISTS.map(artistCard).join('');
-  $('home-products').innerHTML = PRODUCTS.slice(0,4).map(productCard).join('');
+  $('home-comisiones').innerHTML = COMISIONES.slice(0,3).map(commissionCard).join('');
+  $('home-merch').innerHTML = MERCH.slice(0,4).map(merchCard).join('');
 }
 function renderChips(){
   $('cat-chips').innerHTML = CATS.map(c=>`<button class="chip ${c===activeCat?'on':''}" data-cat="${c}">${c}</button>`).join('');
 }
 function renderExplorar(){
   renderChips();
-  const openIds = new Set(ARTISTS.filter(a=>a.open).map(a=>a.name));
-  const list = PRODUCTS.filter(p =>
-    (activeCat==='Todos' || p.cat===activeCat) &&
-    (!onlyOpen || openIds.has(p.artist)) &&
-    (!query || (p.title+p.artist).toLowerCase().includes(query)));
-  $('explorar-grid').innerHTML = list.map(productCard).join('');
-  $('explorar-empty').hidden = list.length>0;
+  const q=query;
+  const comms = COMISIONES.filter(p => (activeCat==='Todos'||p.cat===activeCat) && (!onlyOpen||artistOf(p.artist).open) && (!q||(p.title+p.artist).toLowerCase().includes(q)));
+  const merch = MERCH.filter(p => (activeCat==='Todos'||p.cat===activeCat) && (!q||(p.title+p.artist).toLowerCase().includes(q)));
+  $('explorar-comisiones').innerHTML = comms.map(commissionCard).join('');
+  $('explorar-comisiones-empty').hidden = comms.length>0;
+  $('explorar-merch').innerHTML = merch.map(merchCard).join('');
+  $('explorar-merch-empty').hidden = merch.length>0;
 }
 function renderPerfil(){
   $('perfil-portafolio').innerHTML = EMOJI.slice(0,4).map((e,i)=>`<div class="card"><div class="thumb" style="${grad(i)}">${e}</div><span class="note">Pieza de portafolio ${i+1}</span></div>`).join('');
-  $('perfil-tienda').innerHTML = PRODUCTS.filter(p=>p.artist==='Kore Kore').map(productCard).join('');
+  $('perfil-tienda').innerHTML = MERCH.filter(p=>p.artist==='Kore Kore').map(merchCard).join('');
 }
+
+let drawerState='list';
 function renderCart(){
-  const items=[...cart].map(([id,q])=>({p:PRODUCTS.find(x=>x.id===id),q}));
+  const items=[...cart].map(([id,q])=>({p:findMerch(id),q}));
+  const total = items.reduce((s,{p,q})=>s+p.price*q,0);
   $('cart-badge').hidden = items.length===0;
   $('cart-badge').textContent = items.reduce((s,{q})=>s+q,0);
-  $('cart-empty').hidden = items.length>0;
-  $('cart-panel').hidden = items.length===0;
-  const total = items.reduce((s,{p,q})=>s+p.price*q,0);
-  $('cart-lines').innerHTML = items.map(({p,q})=>`<div class="cartline">
-    <div><strong>${p.title}</strong><br><span class="note">${money(p.price)} c/u</span></div>
-    <div style="display:flex;align-items:center;gap:.5rem">
-      <button class="qtybtn" data-dec="${p.id}">−</button><span>${q}</span><button class="qtybtn" data-inc="${p.id}">+</button>
-    </div></div>`).join('');
+  $('cart-view-list').hidden = drawerState!=='list';
+  $('cart-view-checkout').hidden = drawerState!=='checkout';
+  $('cart-view-success').hidden = drawerState!=='success';
+  $('cart-total-row').hidden = drawerState==='success';
+  if(drawerState==='list'){
+    $('cart-empty').hidden = items.length>0;
+    $('cart-lines').innerHTML = items.map(({p,q})=>`<div class="cartline">
+      <div><strong>${p.title}</strong><br><span class="note">${money(p.price)} c/u</span></div>
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <button class="qtybtn" data-dec="${p.id}">−</button><span>${q}</span><button class="qtybtn" data-inc="${p.id}">+</button>
+      </div></div>`).join('');
+  }
   $('cart-total').textContent = money(total);
-  document.querySelectorAll('[data-add]').forEach(b=>{
-    const id=Number(b.dataset.add), q=cart.get(id)||0;
-    b.textContent = q?`En carrito (${q})`:'Agregar';
-  });
+  const fb = $('cart-footer-btn');
+  fb.hidden = drawerState==='list' && items.length===0;
+  fb.textContent = drawerState==='list' ? 'Proceder al pago' : drawerState==='checkout' ? 'Confirmar pedido' : 'Seguir explorando';
 }
+function syncAll(){
+  renderHome(); renderExplorar(); renderPerfil(); renderCart();
+  if(openMerchId!==null) renderMerchModalAction(findMerch(openMerchId));
+}
+function openCart(){ drawerState='list'; renderCart(); $('backdrop').classList.add('show'); $('cart-drawer').classList.add('open'); }
+function closeCart(){ $('backdrop').classList.remove('show'); $('cart-drawer').classList.remove('open'); drawerState='list'; }
+
+function openComm(id){
+  const p=findComm(id), a=artistOf(p.artist), aIdx=ARTISTS.indexOf(a), pIdx=COMISIONES.indexOf(p);
+  $('cm-title').textContent = p.title;
+  $('cm-price').textContent = money(p.price);
+  $('cm-price').dataset.base = p.price;
+  $('cm-addon').checked=false;
+  $('cm-addon-price').textContent = '+'+money(p.addon);
+  $('cm-addon-price').dataset.addon = p.addon;
+  $('cm-desc').textContent = p.desc;
+  const pf = PFP[a.id];
+  $('cm-avatar').setAttribute('style', pf ? `width:40px;height:40px;font-size:1.1rem;background-image:url('${pf}');background-size:cover;background-position:center` : `width:40px;height:40px;font-size:1.1rem;${grad(aIdx)}`);
+  $('cm-avatar').textContent = pf ? '' : EMOJI[aIdx];
+  $('cm-artist-name').textContent = a.name;
+  $('cm-artist-status').innerHTML = `<span class="status ${a.open?'open':'closed'}">${a.open?'Comisiones abiertas':'Comisiones cerradas'}</span>`;
+  fillGallery('cm-gal-main','cm-gal-prev','cm-gal-next','cm-gal-dots', COMISION_IMG[p.id], pIdx);
+  $('backdrop').classList.add('show');
+  $('comm-modal').classList.add('show');
+}
+function closeComm(){ $('backdrop').classList.remove('show'); $('comm-modal').classList.remove('show'); }
+$('cm-addon').addEventListener('change', e=>{
+  const base=Number($('cm-price').dataset.base), addon=Number($('cm-addon-price').dataset.addon);
+  $('cm-price').textContent = money(base + (e.target.checked?addon:0));
+});
+
+function renderMerchModalAction(p){
+  const q=cart.get(p.id)||0;
+  $('mm-action').innerHTML = q>0
+    ? `<div class="stepper"><button class="qtybtn" data-dec="${p.id}">−</button><span>${q}</span><button class="qtybtn" data-inc="${p.id}">+</button></div>`
+    : `<button class="addbtn" data-add="${p.id}" style="width:100%;padding:.7rem">Agregar al carrito</button>`;
+}
+function openMerch(id){
+  const p=findMerch(id), pIdx=MERCH.indexOf(p);
+  openMerchId=id;
+  $('mm-cat').textContent=p.cat;
+  $('mm-title').textContent=p.title;
+  $('mm-artist').textContent=p.artist;
+  $('mm-price').textContent=money(p.price);
+  $('mm-desc').textContent=p.desc||'';
+  $('mm-sizes').innerHTML=(p.sizes||['Único']).map((s,k)=>`<button class="chip ${k===0?'on':''}" data-size-pick="${s}">${s}</button>`).join('');
+  renderMerchModalAction(p);
+  fillGallery('mm-gal-main','mm-gal-prev','mm-gal-next','mm-gal-dots', MERCH_IMG[p.id], pIdx);
+  $('backdrop').classList.add('show');
+  $('merch-modal').classList.add('show');
+}
+function closeMerch(){ $('backdrop').classList.remove('show'); $('merch-modal').classList.remove('show'); openMerchId=null; }
+
 document.body.addEventListener('click', e=>{
   const go=e.target.closest('[data-go]'); if(go){ location.hash='#'+go.dataset.go; return; }
-  const add=e.target.closest('[data-add]'); if(add){ const id=Number(add.dataset.add); cart.set(id,(cart.get(id)||0)+1); renderCart(); return; }
-  const inc=e.target.closest('[data-inc]'); if(inc){ const id=Number(inc.dataset.inc); cart.set(id,cart.get(id)+1); renderCart(); return; }
-  const dec=e.target.closest('[data-dec]'); if(dec){ const id=Number(dec.dataset.dec); const q=cart.get(id)-1; q>0?cart.set(id,q):cart.delete(id); renderCart(); return; }
+  const add=e.target.closest('[data-add]'); if(add){ const id=add.dataset.add; cart.set(id,(cart.get(id)||0)+1); syncAll(); return; }
+  const inc=e.target.closest('[data-inc]'); if(inc){ const id=inc.dataset.inc; cart.set(id,cart.get(id)+1); syncAll(); return; }
+  const dec=e.target.closest('[data-dec]'); if(dec){ const id=dec.dataset.dec; const q=cart.get(id)-1; q>0?cart.set(id,q):cart.delete(id); syncAll(); return; }
+  const sizePick=e.target.closest('[data-size-pick]'); if(sizePick){ sizePick.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on')); sizePick.classList.add('on'); return; }
+  const galBtn=e.target.closest('[data-gal-for]'); if(galBtn){ stepGallery(galBtn.id.includes('next')?1:-1); return; }
+  const merchOpen=e.target.closest('[data-merch]'); if(merchOpen){ openMerch(merchOpen.dataset.merch); return; }
   const cat=e.target.closest('[data-cat]'); if(cat){ activeCat=cat.dataset.cat; renderExplorar(); return; }
   const op=e.target.closest('[data-open]'); if(op){ onlyOpen=!onlyOpen; op.classList.toggle('on',onlyOpen); renderExplorar(); return; }
-  if(e.target.id==='checkout-btn'){ $('cart-panel').hidden=true; $('checkout-panel').hidden=false; return; }
-  if(e.target.id==='confirm-btn'){
-    $('checkout-panel').hidden=true; $('success-panel').hidden=false;
-    $('order-note').textContent = 'Folio demo: RV-'+Math.random().toString(36).slice(2,7).toUpperCase();
-    cart.clear(); renderCart();
+  const comm=e.target.closest('[data-comm]'); if(comm){ openComm(comm.dataset.comm); return; }
+  if(e.target.id==='cart-open'){ openCart(); return; }
+  if(e.target.id==='cart-close'){ closeCart(); return; }
+  if(e.target.id==='comm-close'){ closeComm(); return; }
+  if(e.target.id==='merch-close'){ closeMerch(); return; }
+  if(e.target.id==='backdrop'){ closeCart(); closeComm(); closeMerch(); return; }
+  if(e.target.id==='comm-request-btn'){ closeComm(); return; }
+  if(e.target.id==='cart-footer-btn'){
+    if(drawerState==='list'){ drawerState='checkout'; }
+    else if(drawerState==='checkout'){
+      drawerState='success';
+      $('order-note').textContent='Folio demo: RV-'+Math.random().toString(36).slice(2,7).toUpperCase();
+      cart.clear();
+    } else { closeCart(); }
+    syncAll();
     return;
   }
 });
 $('search-input').addEventListener('input', e=>{ query=e.target.value.trim().toLowerCase(); if(location.hash!=='#explorar') location.hash='#explorar'; renderExplorar(); });
 
-const VIEWS=['home','explorar','perfil','carrito'];
+const VIEWS=['home','explorar','perfil'];
 function route(){
   const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
-  VIEWS.forEach(name=>{
-    document.querySelector(`[data-view="${name}"]`).hidden = name!==v;
-  });
+  VIEWS.forEach(name=>{ document.querySelector(`[data-view="${name}"]`).hidden = name!==v; });
   document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on', b.dataset.go===v));
-  if(v==='carrito'){ $('cart-panel').hidden = cart.size===0; $('checkout-panel').hidden=true; $('success-panel').hidden=true; renderCart(); }
   window.scrollTo(0,0);
 }
 addEventListener('hashchange', route);
